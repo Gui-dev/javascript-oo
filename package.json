@@ -17,6 +17,6 @@
     "traceur": "0.0.108"
   },
   "devDependencies": {
-    "lite-server": "^2.2.0"
+    "lite-server": "^2.3.0"
   }
 }
