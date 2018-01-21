@@ -1,17 +1,23 @@
-
 import 'jquery'
-import { Car } from "./classes/car.js"
-import { Drone } from "./classes/drone.js"
 import { fleet } from './fleet-data.js'
 import { FleetDataService } from './services/fleet-data-service.js'
-import { Button } from './ui/button.js'
-import { Image } from './ui/image.js'
-import { TitleBar } from './ui/title-bar.js'
+import { ApplicationBase } from './framework/application-base.js'
 
-let tb = new TitleBar( 'Our Application' )
-tb.addLink( 'Home', '' )
-tb.addLink( 'Cars', '' )
-tb.addLink( 'Drones', '' )
-tb.addLink( 'Map', '' )
-tb.appendToElement( $( 'body' ) )
+export class App extends ApplicationBase {
+
+  constructor() {
+    super( 'Fleet Manager' )
+    this.dataService = new FleetDataService()
+    this.dataService.loadData( fleet )
+
+    this.addRoute( 'Home', null, true )
+    this.addRoute( 'Cars', null, true )
+    this.addRoute( 'Drone', null, true )
+    this.addRoute( 'Map', null, true )
+  }
+}
+
+export let application = new App()
+application.show( $('body') )
+
 
