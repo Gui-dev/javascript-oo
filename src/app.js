@@ -3,6 +3,10 @@ import { fleet } from './fleet-data.js'
 import { FleetDataService } from './services/fleet-data-service.js'
 import { ApplicationBase } from './framework/application-base.js'
 
+import { HomePage } from './home-page.js'
+import { CarsPage } from './cars-page.js'
+import { MapPage } from './map-page.js'
+
 export class App extends ApplicationBase {
 
   constructor() {
@@ -10,10 +14,10 @@ export class App extends ApplicationBase {
     this.dataService = new FleetDataService()
     this.dataService.loadData( fleet )
 
-    this.addRoute( 'Home', null, true )
-    this.addRoute( 'Cars', null, true )
-    this.addRoute( 'Drone', null, true )
-    this.addRoute( 'Map', null, true )
+    this.addRoute( 'Home', new HomePage(), true )
+    this.addRoute( 'Cars', new CarsPage() )
+    this.addRoute( 'Drone', null )
+    this.addRoute( 'Map', new MapPage() )
   }
 }
 

@@ -1,4 +1,5 @@
 import { TitleBar }  from './../ui/title-bar.js'
+import 'jquery'
 
 export class ApplicationBase {
   
@@ -9,8 +10,11 @@ export class ApplicationBase {
     this.defaultRoute = null
   }
 
-  show( element ) {
-    this.titleBar.appendToElement( element )
+  activateRoute( route ) {
+    let content = this.titleBar.element.find( '.page-content' )
+    content.empty()
+
+    this.routeMap[ route ].appendToElement( content )
   }
 
   addRoute( id, pageObject, defaultRoute = false ) {
@@ -21,4 +25,19 @@ export class ApplicationBase {
       this.defaultRoute = id
     }
   }
+
+  show( element ) {
+    this.titleBar.appendToElement( element )
+
+    this.titleBar.element.find( 'mdl-navigation__link' ).click( ( event ) => {
+      let route = event.target.innerHTML
+      this.activateRoute( route.trim() )
+    } )
+
+    if( this.defaultRoute ) {
+      this.activateRoute( this.defaultRoute )
+    }
+  }
+
+  
 }

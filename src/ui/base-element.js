@@ -9,7 +9,6 @@ export class BaseElement {
   appendToElement( el ) {
     this.createElement()
     el.append( this.element )
-    this.enableJS()
   }
 
   createElement() {
